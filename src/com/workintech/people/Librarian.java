@@ -4,6 +4,7 @@ import com.workintech.books.Book;
 import com.workintech.Library;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Librarian {
     private String name;
@@ -70,5 +71,17 @@ public class Librarian {
         } else {
             System.out.println("This book is already in the library.");
         }
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) return false;
+        Librarian librarian = (Librarian) object;
+        return Objects.equals(name, librarian.name) && Objects.equals(password, librarian.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, password);
     }
 }

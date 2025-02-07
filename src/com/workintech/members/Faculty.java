@@ -3,6 +3,7 @@ package com.workintech.members;
 import com.workintech.books.Book;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Faculty extends MemberRecord{
@@ -76,5 +77,17 @@ public class Faculty extends MemberRecord{
     public void payBill() {
         double totalAmount = getNoBooksIssued() * getMemberType().getPayPerBook();
         System.out.println("Total bill to pay: " + totalAmount);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) return false;
+        Faculty faculty = (Faculty) object;
+        return Objects.equals(borrowBooks, faculty.borrowBooks);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(borrowBooks);
     }
 }

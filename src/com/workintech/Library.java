@@ -8,6 +8,7 @@ import com.workintech.people.Reader;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Library {
@@ -98,5 +99,16 @@ public class Library {
         }
     }
 
+    @Override
+    public boolean equals(Object object) {
 
+        if (object == null || getClass() != object.getClass()) return false;
+        Library library = (Library) object;
+        return Objects.equals(books, library.books) && Objects.equals(authors, library.authors) && Objects.equals(readers, library.readers) && Objects.equals(librarian, library.librarian);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(books, authors, readers, librarian);
+    }
 }
